@@ -89,11 +89,19 @@ img {
   background: none;
   padding: 0;
   margin: 0;
+  
+  &__active {
+    color: var(--key-color-dark);
+  }
 
   svg {
     width: 32px;
     height: 32px;
     margin-top: 4px;
+
+    &:hover {
+      color: var(--key-color-dark);
+    }
   }
 }
 
@@ -120,7 +128,7 @@ img {
   }
 }
 
-.cart {
+.cart, .favorites {
   position: relative;
 }
 
