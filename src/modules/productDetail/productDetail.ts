@@ -20,7 +20,11 @@ class ProductDetail extends Component {
     const urlParams = new URLSearchParams(window.location.search);
     const productId = Number(urlParams.get('id'));
 
-    const productResp = await fetch(`/api/getProduct?id=${productId}`);
+    const productResp = await fetch(`/api/getProduct?id=${productId}`, {
+      headers: {
+        'x-userid': window.userId
+      }
+    });
     this.product = await productResp.json();
 
     if (!this.product) return;
@@ -37,7 +41,11 @@ class ProductDetail extends Component {
 
     if (isInCart) this._setInCart();
 
-    fetch(`/api/getProductSecretKey?id=${id}`)
+    fetch(`/api/getProductSecretKey?id=${id}`, {
+      headers: {
+        'x-userid': window.userId
+      }
+    })
       .then((res) => res.json())
       .then((secretKey) => {
         this.view.secretKey.setAttribute('content', secretKey);
