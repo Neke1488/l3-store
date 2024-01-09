@@ -5,6 +5,8 @@ import { ProductData } from 'types';
 import html from './productDetail.tpl.html';
 import { cartService } from '../../services/cart.service';
 import { favoriteService } from '../../services/favorites.service';
+import { metrikaService } from '../../services/metrika.service';
+
 
 class ProductDetail extends Component {
   more: ProductList;
@@ -45,6 +47,8 @@ class ProductDetail extends Component {
       .then((res) => res.json())
       .then((secretKey) => {
         this.view.secretKey.setAttribute('content', secretKey);
+        
+        metrikaService.cartEventView(this.product, secretKey);
       });
 
     fetch('/api/getPopularProducts')
@@ -59,6 +63,8 @@ class ProductDetail extends Component {
 
     cartService.addProduct(this.product);
     this._setInCart();
+
+    metrikaService.cartAdd(this.product);
   }
 
   private _setInCart() {

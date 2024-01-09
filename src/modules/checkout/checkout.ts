@@ -4,6 +4,7 @@ import html from './checkout.tpl.html';
 import { formatPrice } from '../../utils/helpers';
 import { cartService } from '../../services/cart.service';
 import { ProductData } from 'types';
+import { metrikaService } from '../../services/metrika.service';
 
 class Checkout extends Component {
   products!: ProductData[];
@@ -34,6 +35,8 @@ class Checkout extends Component {
       method: 'POST',
       body: JSON.stringify(this.products)
     });
+    metrikaService.shopEvent(this.products);
+    
     window.location.href = '/?isSuccessOrder';
   }
 }
