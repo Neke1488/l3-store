@@ -13,7 +13,7 @@ class Metrika {
 
     async cartEventView(productProperties: any, secretKey: string) {
         this.sendEvent({
-            type: productProperties.log ? 'cartPreView' : 'viewCart',
+            type: productProperties.log ? 'viewCardPromo' : 'viewCart',
             payload: {
                 ...productProperties, secretKey: secretKey
             },
