@@ -22,8 +22,8 @@ export default class Router {
     window.addEventListener('hashchange', this.route.bind(this));
   }
 
-  route(el?: any) {
-   if (el) el.preventDefault();
+  route(e: any) {
+   if (e) e.preventDefault();
 
     // @ts-ignore
     const component = ROUTES[window.location.pathname] || notFoundComp;
